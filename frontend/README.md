@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# QuizVerse - AI-Powered Quiz Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack MERN application that allows users to create, share, and take quizzes with AI-powered quiz generation.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **User Authentication**: JWT-based secure authentication with bcrypt password hashing
+- **Manual Quiz Creation**: Create custom quizzes with multiple-choice questions
+- **AI Quiz Generation**: Generate quizzes on any topic using OpenAI API
+- **Quiz Management**: Publish/unpublish, delete quizzes (soft delete)
+- **Quiz Taking**: Real-time timer, progress tracking, instant results
+- **Results & Review**: Detailed score breakdown with answer review
+- **User Profiles**: Customizable privacy settings for quiz history
+- **Social Features**: Browse public quizzes, search users, view profiles
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Frontend:**
+- React.js
+- React Router
+- Axios
+- DaisyUI + Tailwind CSS
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Backend:**
+- Node.js + Express.js
+- MongoDB + Mongoose
+- JWT Authentication
+- bcrypt.js
+- OpenAI API (via OpenRouter)
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend Setup
 
-### `npm run build`
+```bash
+cd backend
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Create `.env` file:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```env
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+OPENAI_API_KEY=your_openrouter_api_key
+PORT=5000
+NODE_ENV=development
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Start backend:
 
-### `npm run eject`
+```bash
+node server.js
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Frontend Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+cd frontend
+npm install
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## API Endpoints
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login user
 
-## Learn More
+### Quiz
+- `POST /api/quiz/create` - Create quiz
+- `POST /api/quiz/generate-ai` - Generate AI quiz
+- `GET /api/quiz/public` - Get all public quizzes
+- `GET /api/quiz/my-quizzes` - Get user's quizzes
+- `GET /api/quiz/:id` - Get single quiz
+- `POST /api/quiz/:id/submit` - Submit quiz attempt
+- `PATCH /api/quiz/:id/toggle-public` - Publish/unpublish
+- `DELETE /api/quiz/:id` - Delete quiz
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### User
+- `GET /api/user/me` - Get current user
+- `GET /api/user/:id` - Get user profile
+- `GET /api/user/search` - Search users
+- `PATCH /api/user/stats-visibility` - Update privacy
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
